@@ -72,20 +72,27 @@
   </style>
 
   <script>
-    const hands = ['.second-hand', '.minute-hand', '.hour-hand']
+    const handsArray = ['.second-hand', '.minute-hand', '.hour-hand']
       .map(hand => document.querySelector(hand));
 
-    const setDate = (hands) => {
-      const now  = new Date();
-      const seconds = now.getSeconds();
-      const secondsDegrees = (seconds/60)*360;
-      const [secondHand, minuteHand, hourHand] = hands;
+    const rotateHand = hand => degrees => hand.style.transform = `rotate(${degrees}deg)`;
 
-    };
+    const timeDegrees = () => {
+      const now = new Date();
+      return ([
+        (now.getSeconds() / 60) * 360 + 90,
+        (now.getMinutes() / 60) * 360 + 90,
+        (now.getHours() / 12) * 360 + 90
+      ]);
+    }
 
-  setInterval(setDate, 1000);
+    const setDate = ((hands) => () => {
+      const degreesArray = timeDegrees();
+      [...Array(hands.length).keys()]
+      .map(i => rotateHand(hands[i], degreesArray[i]));
+    })(handsArray);
 
-
+    setInterval(setDate, 1000);
   </script>
 </body>
 
