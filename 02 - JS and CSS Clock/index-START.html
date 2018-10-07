@@ -66,30 +66,30 @@
       position: absolute;
       top: 50%;
       transform-origin: 100%;
+      transform: rotate(90deg);
       transition: all 0.05s;
       transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
     }
   </style>
 
   <script>
-    const handsArray = ['.second-hand', '.minute-hand', '.hour-hand']
+    const handsArray = ['.second-hand', '.min-hand', '.hour-hand']
       .map(hand => document.querySelector(hand));
-
+    console.log(handsArray)
     const rotateHand = hand => degrees => hand.style.transform = `rotate(${degrees}deg)`;
 
     const timeDegrees = () => {
       const now = new Date();
       return ([
-        (now.getSeconds() / 60) * 360 + 90,
-        (now.getMinutes() / 60) * 360 + 90,
-        (now.getHours() / 12) * 360 + 90
+        now.getSeconds() * 6 + 90,
+        now.getMinutes() * 6 + now.getSeconds() / 10 + 90,
+        (now.getHours() %12) * 30 + now.getMinutes() / 2 + 90
       ]);
     }
 
     const setDate = ((hands) => () => {
-      const degreesArray = timeDegrees();
       [...Array(hands.length).keys()]
-      .map(i => rotateHand(hands[i], degreesArray[i]));
+      .map(i => rotateHand(hands[i])(degreesArray[i]));
     })(handsArray);
 
     setInterval(setDate, 1000);
