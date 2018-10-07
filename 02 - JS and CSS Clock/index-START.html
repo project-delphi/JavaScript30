@@ -75,7 +75,6 @@
   <script>
     const handsArray = ['.second-hand', '.min-hand', '.hour-hand']
       .map(hand => document.querySelector(hand));
-    console.log(handsArray)
     const rotateHand = hand => degrees => hand.style.transform = `rotate(${degrees}deg)`;
 
     const timeDegrees = () => {
@@ -88,6 +87,7 @@
     }
 
     const setDate = ((hands) => () => {
+      const degreesArray = timeDegrees();
       [...Array(hands.length).keys()]
       .map(i => rotateHand(hands[i])(degreesArray[i]));
     })(handsArray);
