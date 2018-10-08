@@ -62,12 +62,16 @@
   <script>
     const inputs = document.querySelectorAll('.controls input');
 
-    const handleUpdate = () => {
-      console.log(this.value);
+    const handleUpdate = (element) => () => {
+      const suffix = this.data.sizing || '';
+      document.documentElement.style.setProperty(`--{this.name}`, this.value + suffix);
+
       
     };
 
-    Array.from(inputs).map( input => input.addEventListener() );
+    const arr = Array.from(inputs);
+    arr.map(input => input.addEventListener('change', handleUpdate(input)));
+    arr.map(input => input.addEventListener('mousemove', handleUpdate(input)));
   </script>
 
 </body>
