@@ -48,11 +48,14 @@
     
     // 7. sort Exercise
     // Sort the people alphabetically by last name
-
+    people.sort((a,b) => a.split(',')[0].localeCompare(b.split(',')[0]))
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
-
+    data.reduce((p,c) => {
+      p[c] = p[c] ? p[c] + 1 : 1 
+      return (p);
+      }, p = {});
   </script>
 </body>
 </html>
