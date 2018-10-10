@@ -29,20 +29,35 @@
       const regex = new RegExp(wordToMatch, 'gi')
       return cities.filter(
         item => (item.city.match(regex) || item.state.match(regex))
-      )
+      );
     };
-    const displayMatches = (element) => () => {
-      console.log(element.value)
-      const matchAray = findMatches(element.value, cities)
 
+    const hlName = (el) => (obj) => (loc) => (rgx) =>  obj[loc]
+      .replace(rgx, `<span class=hl>${el.value}</span>`);
+    
+    const htmlLi = (el) => (regex) => (place) => {
+      const cityName = hlName(el)(place)('city')(regex);
+      const stateName = hlName(el)(place)('state')(regex);
+      return `
+      <li>
+      <span class="name"> ${cityName}, ${stateName} </span>
+      <span class="population"> ${place.population}</span>
+      </li>
+      `;
+    };
+
+    const displayMatches = (selector) => (element) => () => {
+      const regex = new RegExp(element.value, 'gi')
+      selector.innerHTML = findMatches(element.value, cities)
+        .map(htmlLi(element)(regex))
+        .join('');
     };
 
     const searchInput = document.querySelector('.search');
     const suggestions = document.querySelector('.suggestions');
 
-    searchInput.addEventListener('change', displayMatches(searchInput));
-    searchInput.addEventListener('keyup', displayMatches(searchInput));
-
+    searchInput.addEventListener('change', displayMatches(suggestions)(searchInput));
+    searchInput.addEventListener('keyup', displayMatches(suggestions)(searchInput));
   </script>
 </body>
 
