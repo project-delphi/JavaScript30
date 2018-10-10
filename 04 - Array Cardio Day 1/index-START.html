@@ -123,8 +123,8 @@
       fetch(url, {
           mode: 'no-cors'
         })
-        .then(response => response.text())
-        .then(text => {
+        .then(response => {
+          const text = response.text()
           console.log(text);
           const parser = new DOMParser();
           const htmlDocument = parser.parseFromString(text, "text/html");
