@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Type Ahead 👀</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
   <form class="search-form">
@@ -14,19 +16,34 @@
       <li>or a state</li>
     </ul>
   </form>
-<script>
-const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+  <script>
+    const endpoint =
+      'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
 
-const cities = [];
-fetch(endpoint)
-  .then(blob => blob.json())
-  .then( data => cities.push(...data))
+    const cities = [];
+    fetch(endpoint)
+      .then(blob => blob.json())
+      .then(data => cities.push(...data))
 
-const findMatches = (wordToMatch, cities) => {
-const regex = new RegExp(wordToMatch,'gi')
-return cities.filter(item => item.city.match(regex) || item.state.match(regex))
+    const findMatches = (wordToMatch, cities) => {
+      const regex = new RegExp(wordToMatch, 'gi')
+      return cities.filter(
+        item => (item.city.match(regex) || item.state.match(regex))
+      )
+    };
+    const displayMatches = (element) => () => {
+      console.log(element.value)
+      const matchAray = findMatches(element.value, cities)
 
-}  
-</script>
-  </body>
+    };
+
+    const searchInput = document.querySelector('.search');
+    const suggestions = document.querySelector('.suggestions');
+
+    searchInput.addEventListener('change', displayMatches(searchInput));
+    searchInput.addEventListener('keyup', displayMatches(searchInput));
+
+  </script>
+</body>
+
 </html>
