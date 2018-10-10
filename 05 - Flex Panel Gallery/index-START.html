@@ -86,6 +86,7 @@
 
     .panel.open {
       font-size: 40px;
+      flex: 5;
     }
 
   </style>
@@ -120,6 +121,19 @@
   </div>
 
   <script>
+    const panels = document.querySelectorAll('.panel');
+
+    const toggleOpen = (element) => () => {
+      element.classList.toggle('open');
+    };
+    const toggleActive = (element) => (e) => {
+      e.propertyName.includes('flex') 
+      ? element.classList.toggle('open-active')
+      : null
+    };
+    const panelsArr = [...panels]
+    panelsArr.map(panel => panel.addEventListener('click', toggleOpen(panel)))
+    panelsArr.map(panel => panel.addEventListener('transitionend', toggleActive(panel)))
 
   </script>
 
