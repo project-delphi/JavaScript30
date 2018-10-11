@@ -25,8 +25,7 @@
       .then(blob => blob.json())
       .then(data => cities.push(...data))
 
-    const findMatches = (wordToMatch, cities) => {
-      const regex = new RegExp(wordToMatch, 'gi')
+    const findMatches = (regex, cities) => {
       return cities.filter(
         item => (item.city.match(regex) || item.state.match(regex))
       );
@@ -48,7 +47,7 @@
 
     const displayMatches = (selector) => (element) => () => {
       const regex = new RegExp(element.value, 'gi')
-      selector.innerHTML = findMatches(element.value, cities)
+      selector.innerHTML = findMatches(regex, cities)
         .map(htmlLi(element)(regex))
         .join('');
     };
@@ -58,6 +57,7 @@
 
     searchInput.addEventListener('change', displayMatches(suggestions)(searchInput));
     searchInput.addEventListener('keyup', displayMatches(suggestions)(searchInput));
+  
   </script>
 </body>
 
