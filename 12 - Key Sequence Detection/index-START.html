@@ -9,22 +9,20 @@
 
 <body>
   <script>
-    const secretCode = 'doctorwho';
+    const secretCode = '0000';
 
-    const checkSecretCode = (secretCode) => {
+    const hasPressedSecretCode = ((code) => {
       let pressed = [];
-
-     const hasPressedSecretCode = (key) => {
-        pressed = pressed.push(key).slice(-secretCode.length-1);
-        return pressed.join('').includes(secretCode);
-      };
-      return hasPressedSecretCode
-    };
+      return ((key) => {
+        pressed = pressed.concat(key).slice(-code.length - 1);
+        console.log(pressed)
+        return pressed.join('').includes(code);
+      });
+    })(secretCode);
 
     window.addEventListener('keyup', (e) => {
-
+      hasPressedSecretCode(e.key) ? cornify_add() : null;
     });
-
   </script>
 </body>
 
