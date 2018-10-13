@@ -44,7 +44,7 @@
   </style>
 
 <form>
-    <input type="radio" name="order" value="order-with-article"   > order with article <br>
+    <input type="radio" name="order" value="order-with-article"> order with article <br>
     <input type="radio" name="order" value="order-without-article"> order without article <br>
     <input type="radio" name="order" value="original-order"> original order
 </form>
@@ -55,8 +55,23 @@
 <script>
 const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
 
+// add event listener for each radio button
+// 3 types
+//// order alphabetically with article
 
+//// order alphabetically without article
 
+//// original order
+
+element.addEventListener('RadioStateChange', (e) => {
+  (e.value === 'original-order') ? populate(bands)
+  : (e.value === 'order-with-article')
+  ? 
+  : (e.value === 'order-with-article') 
+  ?
+  :
+
+});
 </script>
 
 </body>
