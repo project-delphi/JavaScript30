@@ -64,11 +64,11 @@
     };
 
     // and think we make a copy:
-
+    const human = person;
     // how do we take a copy instead?
-
+    const human2 = JSON.parse(JSON.stringify(person));
     // We will hopefully soon see the object ...spread
-
+    // const human3 = {...person};
     // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
 
   </script>
