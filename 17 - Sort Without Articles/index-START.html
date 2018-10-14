@@ -44,9 +44,9 @@
   </style>
 
 <form>
-    <input type="radio" name="order" value="order-with-article" onclick=""> order with article <br>
-    <input type="radio" name="order" value="order-without-article" onclick=""> order without article <br>
-    <input type="radio" name="order" value="original-order" onclick=""> original order
+    <input type="radio" name="order" value="order-with-article"> order with article <br>
+    <input type="radio" name="order" value="order-without-article"> order without article <br>
+    <input type="radio" name="order" value="original-order"> original order
 </form>
 
   <ul id="bands"></ul>
@@ -62,7 +62,14 @@ const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'N
 //// order alphabetically without article
 
 //// original order
-
+document.getElementsByName('order')
+  .addEventListner('RadioStateChange', (e) => {
+    (e.value==='order-with-article')
+    ? orderWithArticle()
+    : (e.value==='order-without-article')
+    ?
+    :
+  });
 
 </script>
 
