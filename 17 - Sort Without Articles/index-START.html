@@ -62,15 +62,18 @@ const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'N
 //// order alphabetically without article
 
 //// original order
-document.getElementsByName('order')
-  .addEventListner('RadioStateChange', (e) => {
-    (e.value==='order-with-article')
-    ? orderWithArticle()
-    : (e.value==='order-without-article')
-    ?
-    :
-  });
 
+const radioChangeHander = (element) => (e) => {
+    (element.value==='order-with-article')
+    ? orderWithArticle()
+    : (element.value==='order-without-article')
+    ? orderWithoutArticle()
+    : originalOrder()
+  };
+
+const orderElement = document.getElementsByName('order');
+  orderElement.addEventListner('RadioStateChange', radioChangeHander(orderElement));
+  
 </script>
 
 </body>
