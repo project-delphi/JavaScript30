@@ -45,11 +45,11 @@
 
   </style>
 
-  <form>
+  <!-- <form>
     <input type="radio" name="order" value="order-with-article"> order with article <br>
     <input type="radio" name="order" value="order-without-article"> order without article <br>
     <input type="radio" name="order" value="original-order"> original order
-  </form>
+  </form> -->
 
   <ul id="bands"></ul>
 
@@ -60,36 +60,41 @@
       'Anywhere But Here', 'An Old Dog'
     ];
 
-    const orderWithArticle = () => {
+    const stripArticle = (text) => text.replace(/^(a | then | an )/i,'').trim();
 
+
+    const orderWithoutArticle = bands => () => {
+     return (bands.sort((a,b) => stripArticle(a).localeCompare(stripArticle(b)))); 
     };
-
-    const orderWithoutArticle = () => {
-
-    };
-
-    const originalOrder = () => {
-
-    }
-
-    const populate = (arr) => {
-      document.getElementById().innerHTML = arr
+    
+    const populate = document => (arr) => {
+      document.getElementById('bands').innerHTML = arr
         .map((title) => `<li> ${title} </li>`)
         .join('');
     };
 
-    const radioChangeHander = (element) => (e) => {
-      const arr = (element.value === 'order-with-article') 
-        ? orderWithArticle()
-        : (element.value === 'order-without-article') 
-        ? orderWithoutArticle()
-        : originalOrder()
-      populate(arr);
-    };
+    populate(document)(orderWithoutArticle(bands)());
 
-    const orderElement = document.getElementsByName('order');
-    orderElement.addEventListner('RadioStateChange',
-      radioChangeHander(orderElement));
+    // const orderWithArticle = () => bands.sort((a,b) => a.localCompare(b));
+
+    // const originalOrder = () => {
+    //   return (bands);
+    // }
+
+
+
+    // const radioChangeHander = (element) => (e) => {
+    //   const arr = (element.value === 'order-with-article') 
+    //     ? orderWithArticle()
+    //     : (element.value === 'order-without-article') 
+    //     ? orderWithoutArticle()
+    //     : originalOrder()
+    //   populate(arr);
+    // };
+
+    // const orderElement = document.getElementsByName('order');
+    // orderElement.addEventListner('RadioStateChange',
+    //   radioChangeHander(orderElement));
   </script>
 
 </body>
