@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Sort Without Articles</title>
 </head>
+
 <body>
 
   <style>
@@ -43,38 +45,53 @@
 
   </style>
 
-<form>
+  <form>
     <input type="radio" name="order" value="order-with-article"> order with article <br>
     <input type="radio" name="order" value="order-without-article"> order without article <br>
     <input type="radio" name="order" value="original-order"> original order
-</form>
+  </form>
 
   <ul id="bands"></ul>
 
 
-<script>
-const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
+  <script>
+    const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled',
+      'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive',
+      'Anywhere But Here', 'An Old Dog'
+    ];
 
-// add event listener for each radio button
-// 3 types
-//// order alphabetically with article
+    const orderWithArticle = () => {
 
-//// order alphabetically without article
+    };
 
-//// original order
+    const orderWithoutArticle = () => {
 
-const radioChangeHander = (element) => (e) => {
-    (element.value==='order-with-article')
-    ? orderWithArticle()
-    : (element.value==='order-without-article')
-    ? orderWithoutArticle()
-    : originalOrder()
-  };
+    };
 
-const orderElement = document.getElementsByName('order');
-  orderElement.addEventListner('RadioStateChange', radioChangeHander(orderElement));
-  
-</script>
+    const originalOrder = () => {
+
+    }
+
+    const populate = (arr) => {
+      document.getElementById().innerHTML = arr
+        .map((title) => `<li> ${title} </li>`)
+        .join('');
+    };
+
+    const radioChangeHander = (element) => (e) => {
+      const arr = (element.value === 'order-with-article') 
+        ? orderWithArticle()
+        : (element.value === 'order-without-article') 
+        ? orderWithoutArticle()
+        : originalOrder()
+      populate(arr);
+    };
+
+    const orderElement = document.getElementsByName('order');
+    orderElement.addEventListner('RadioStateChange',
+      radioChangeHander(orderElement));
+  </script>
 
 </body>
+
 </html>
