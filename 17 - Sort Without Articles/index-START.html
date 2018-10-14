@@ -60,7 +60,7 @@
       'Anywhere But Here', 'An Old Dog'
     ];
 
-    const stripArticle = (text) => text.replace(/^(a | then | an )/i,'').trim();
+    const stripArticle = (text) => text.replace(/^(a |the |an )/i,'').trim();
 
 
     const orderWithoutArticle = bands => () => {
