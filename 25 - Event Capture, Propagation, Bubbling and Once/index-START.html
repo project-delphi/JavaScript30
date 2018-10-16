@@ -52,7 +52,7 @@
 
     const logText = div => e => {
       console.log(div.classList.value);
-      e.stopPropogation();
+      e.stopPropagation();
     }
 
     divs.map(div => div.addEventListener('click', logText(div), {
