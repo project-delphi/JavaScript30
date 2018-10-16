@@ -44,9 +44,15 @@
 <script>
 const divs = [...document.querySelectorAll('div')];
 
-const logText = e => console.log(this.classList.value);
+const logText = div => e => {
+  console.log(div.classList.value);
+  e.stopPropogation();
+}
 
-divs.map(div => div.addEventListener('click', logText))
+divs.map(div => div.addEventListener('click', logText(div),{
+  capture: true,
+  once: true, 
+  }));
 
 </script>
 </body>
