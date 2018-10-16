@@ -42,6 +42,11 @@
 
 <button></button>
 <script>
+const divs = [...document.querySelectorAll('div')];
+
+const logText = e => console.log(this.classList.value);
+
+divs.map(div => div.addEventListener('click', logText))
 
 </script>
 </body>
