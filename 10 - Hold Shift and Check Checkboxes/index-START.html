@@ -96,6 +96,14 @@
   </div>
 
 <script>
+  const checkboxes = [...document.querySelectorAll('.inbox input[type="checkbox"]')]; 
+  console.table(checkboxes);  
+  
+  const checkHandler = (e) => {
+
+  }
+  checkboxes.map(checkbox => checkbox.addEventListener('click', checkHandler))
+  
 </script>
 </body>
 </html>
