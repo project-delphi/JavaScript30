@@ -182,6 +182,22 @@
     </li>
   </ul>
 <script>
+
+const timeNodes = [...document.querySelectorAll('[data-time]')]
+
+const seconds = timeNodes
+  .map(node => node.dataset.time)
+  .map(item => {
+    const [ mins, secs ] = item.split(':').map(parseFloat)
+    return (mins * 60 + secs)
+  })
+.reduce((total, unitSeconds) => total + unitSeconds, 0)
+
+const hours = Math.floor(seconds/3600);
+const mins = (seconds - hours*3600)%60;
+const sec = seconds - hours*3600 - mins*60 ;
+
+alert(`The total of the videos is ${hours} hours, ${mins} mins and ${sec} seconds`);
 </script>
 </body>
 </html>
