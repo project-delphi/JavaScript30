@@ -12,7 +12,15 @@ const togglePlay = () => video[video.paused ? 'play' : 'pause']();
 const updateButton = () => toggle.textContent = video.paused ? '►' : '❚ ❚';
 
 const skip = function () {
-  video.currentTime = this.dataset.skip;
+  video.currentTime = parseFloat(this.dataset.skip);
+};
+
+const handleRangeUpdate = function (params) {
+  video[this.name] = this.value;
+};
+
+const handleProgress = function (params) {
+  
 };
 
 // hook up eventlisteners between functions and elements
@@ -21,3 +29,6 @@ video.addEventListener('play', updateButton);
 video.addEventListener('pause', updateButton);
 toggle.addEventListener('click', togglePlay);
 [...skipButtons].map(btn => btn.addEventListener('click', skip));
+
+[...ranges].map(range => range.addEventListener('click', handleRangeUpdate));
+[...ranges].map(range => range.addEventListener('mousemove', handleRangeUpdate));
